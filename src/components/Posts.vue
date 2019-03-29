@@ -1,20 +1,39 @@
 <template>
   <div class="hello">
     <h1>Sortable Post List</h1>
+    <transition-group name="flip-list" tag="ol">
+      <li v-for="(post, index) in posts" v-bind:key="post.id">
+        <p class="list-content">
+          <font-awesome-icon icon="chevron-up" class="chevron-up" v-on:click="up"/>
+          <font-awesome-icon icon="chevron-down" class="chevron-down" v-on:click="down"/>
+          Post {{ index + 1}}
+        </p>
+      </li>
+    </transition-group>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Posts',
+  name: "Posts",
   methods: {
-    // 
+    up: function() {
+      console.log("up >>>");
+    },
+    down: function() {
+      console.log("down >>>");
+    }
+  },
+  computed: {
+    posts: function() {
+      return this.$store.getters.posts;
+    }
   },
   created() {
     // dispatch action get posts
-    this.$store.dispatch('getPosts');
+    this.$store.dispatch("getPosts");
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -23,14 +42,42 @@ h3 {
   margin: 40px 0 0;
 }
 ul {
-  list-style-type: none;
   padding: 0;
 }
 li {
-  display: inline-block;
   margin: 0 10px;
+  /* width: auto; */
+  list-style-type: none;
+  position: relative;
+  font-size: 1.5rem;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #d3d3d3;
+  color: #fff;
+  width: 600px;
 }
 a {
   color: #42b983;
+}
+
+.list-content {
+  text-align: center;
+}
+
+.chevron-up {
+  display: block;
+  top: -35px;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+
+.chevron-down {
+  display: block;
+  top: 35px;
+  left: 20px;
+  cursor: pointer;
+  float: right;
+  position: relative;
 }
 </style>
