@@ -13,6 +13,22 @@ export const store = new Vuex.Store({
     setPosts: (state, posts) => {
       state.posts = posts;
     },
+    up: (state, index) => {
+      const postsCopy = [...state.posts];
+
+      const temp = postsCopy[index - 1];
+      postsCopy[index - 1] = postsCopy[index];
+      postsCopy[index] = temp;
+      state.posts = postsCopy;
+    },
+    down: (state, index) => {
+      const postsCopy = [...state.posts];
+
+      const temp = postsCopy[index + 1];
+      postsCopy[index + 1] = postsCopy[index];
+      postsCopy[index] = temp;
+      state.posts = postsCopy;
+    },
   },
   actions: {
     getPosts: store => {
@@ -26,6 +42,8 @@ export const store = new Vuex.Store({
     },
   },
   getters: {
-    posts: state => state.posts,
+    posts: state => {
+      return state.posts;
+    },
   },
 });
