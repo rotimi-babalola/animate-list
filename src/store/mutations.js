@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const mutations = {
   setPosts: (state, posts) => {
     state.posts = posts;

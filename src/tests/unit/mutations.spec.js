@@ -1,4 +1,4 @@
-import mutations from '../store/mutations';
+import mutations from '../../store/mutations';
 
 describe('mutations', () => {
   it('Sets Posts in state', () => {
@@ -8,6 +8,6 @@ describe('mutations', () => {
       { id: 1, text: 'Lorem Isum' },
       { id: 2, text: 'Lorem Ipsum' },
     ]);
-    expect(state.posts.length).to.equal(2);
+    expect(state.posts.length).toEqual(2);
   });
 });
