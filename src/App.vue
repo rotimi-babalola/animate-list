@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Posts />
+    <History/>
   </div>
 </template>
 
 <script>
 import Posts from './components/Posts.vue'
+import History from './components/History'
 
 export default {
   name: 'app',
   components: {
-    Posts
+    Posts,
+    History,
   }
 }
 </script>
@@ -23,5 +26,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 </style>
