@@ -3,11 +3,11 @@
     <div>
       <h1 class="history-header">List of actions committed</h1>
       <transition-group name="fade" tag="ol">
-        <li v-for="(h, index) in history" v-bind:key="getPostId(index)">
+        <li v-for="(h, index) in history" v-bind:key="getPostId(index)" class="list-items">
           <p class="list-content">
             Moved post {{ getPostId(index) }} from index {{ getFromIndex(index) }} to index {{ getToIndex(index) }}
+            <button v-on:click="timeTravel(index)" class="time-travel-button">Time Travel</button>
           </p>
-          <button v-on:click="timeTravel(index)">Time Travel</button>
         </li>
       </transition-group>
     </div>
@@ -40,22 +40,25 @@ export default {
 </script>
 
 <style scoped>
+  .history-container {
+    height: 700px;
+    overflow-y: scroll;
+  }
+
   .history-header {
     margin: 15px;
   }
 
-  li {
-  margin: 0 10px;
-  list-style-type: none;
-  position: relative;
-  font-size: 1.5rem;
-  padding: 15px;
-  margin-bottom: 15px;
-  background: #d3d3d3;
-  color: #fff;
-  width: auto;
-  border-bottom: 2px red;
-  border-radius: 10px;
+.time-travel-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .fade-enter-active, .fade-leave-active {
