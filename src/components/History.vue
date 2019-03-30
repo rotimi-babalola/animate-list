@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
   .history-container {
-    height: 700px;
+    height: 650px;
     overflow-y: scroll;
   }
 
