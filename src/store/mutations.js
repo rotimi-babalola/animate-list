@@ -10,8 +10,8 @@ const mutations = {
     postsCopy[index - 1] = postsCopy[index];
     postsCopy[index] = temp;
     state.posts = postsCopy;
-    // push into history array
-    state.history.push({
+    // add history to the beginning of the array
+    state.history.unshift({
       post: state.posts.filter(post => post.id === postId),
       from: index,
       to: index - 1,
@@ -25,8 +25,8 @@ const mutations = {
     postsCopy[index + 1] = postsCopy[index];
     postsCopy[index] = temp;
     state.posts = postsCopy;
-    // push into history array
-    state.history.push({
+    // add history to the beginning of the array
+    state.history.unshift({
       post: state.posts.filter(post => post.id === postId),
       from: index,
       to: index + 1,
