@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "Posts",
+  name: 'Posts',
   methods: {
     up: function(index) {
       this.$store.commit("up", index);

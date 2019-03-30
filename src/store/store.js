@@ -44,6 +44,13 @@ export const store = new Vuex.Store({
         posts: postsCopy,
       });
     },
+    timeTravel: (state, index) => {
+      // sets post in state to the posts in the history
+      state.posts = state.history[index].posts;
+    },
+    setError: (state, error) => {
+      state.error = error;
+    },
   },
   actions: {
     getPosts: store => {
@@ -52,11 +59,12 @@ export const store = new Vuex.Store({
           store.commit('setPosts', response.data.splice(0, 5));
         })
         .catch(error => {
-          store.commit('error', error);
+          store.commit('setError', error);
         });
     },
   },
   getters: {
     posts: state => state.posts,
+    history: state => state.history,
   },
 });
