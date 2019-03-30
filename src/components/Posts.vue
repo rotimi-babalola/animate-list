@@ -1,15 +1,17 @@
 <template>
   <div class="hello">
-    <h1>Sortable Post List</h1>
-    <transition-group name="flip-list" tag="ol">
-      <li v-for="(post, index) in posts" v-bind:key="post.id">
-        <p class="list-content">
-          <font-awesome-icon icon="chevron-up" class="chevron-up" v-on:click="up(index)"/>
-          <font-awesome-icon icon="chevron-down" class="chevron-down" v-on:click="down(index)"/>
-          Post {{ post.id }}
-        </p>
-      </li>
-    </transition-group>
+    <div>
+      <h1 class="list-header">Sortable Post List</h1>
+      <transition-group name="flip-list" tag="ol">
+        <li v-for="(post, index) in posts" v-bind:key="post.id">
+          <p class="list-content">
+            <font-awesome-icon icon="chevron-up" class="chevron-up" v-on:click="up({ index, postId: post.id })"/>
+            <font-awesome-icon icon="chevron-down" class="chevron-down" v-on:click="down({ index, postId: post.id })"/>
+            Post {{ post.id }}
+          </p>
+        </li>
+      </transition-group>
+    </div>
   </div>
 </template>
 
@@ -18,10 +20,10 @@ export default {
   name: "Posts",
   methods: {
     up: function(index) {
-      this.$store.commit('up', index);
+      this.$store.commit("up", index);
     },
     down: function(index) {
-      this.$store.commit('down', index);
+      this.$store.commit("down", index);
     }
   },
   computed: {
@@ -56,29 +58,34 @@ li {
   width: 600px;
   border-radius: 10px;
 }
-li:nth-last-child(1) p  .chevron-down {
+li:nth-last-child(1) p .chevron-down {
   display: none;
 }
 
-li:nth-last-child(1) p  .chevron-up {
+li:nth-last-child(1) p .chevron-up {
   top: -5px;
 }
 
-li:nth-child(1) p  .chevron-up {
+li:nth-child(1) p .chevron-up {
   display: none;
 }
 
-li:nth-child(1) p  .chevron-down {
+li:nth-child(1) p .chevron-down {
   left: 2px;
-  top: 5px
+  top: 5px;
 }
 
 a {
   color: #42b983;
 }
 
-.list-content {
-  text-align: center;
+.list-content,
+.list-header {
+  text-align: left;
+}
+
+.list-header {
+  margin-left: 50px;
 }
 
 .chevron-up {
