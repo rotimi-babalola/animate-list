@@ -4,9 +4,9 @@
     <transition-group name="flip-list" tag="ol">
       <li v-for="(post, index) in posts" v-bind:key="post.id">
         <p class="list-content">
-          <font-awesome-icon icon="chevron-up" class="chevron-up" v-on:click="up"/>
-          <font-awesome-icon icon="chevron-down" class="chevron-down" v-on:click="down"/>
-          Post {{ index + 1}}
+          <font-awesome-icon icon="chevron-up" class="chevron-up" v-on:click="up(index)"/>
+          <font-awesome-icon icon="chevron-down" class="chevron-down" v-on:click="down(index)"/>
+          Post {{ post.id }}
         </p>
       </li>
     </transition-group>
@@ -17,11 +17,11 @@
 export default {
   name: "Posts",
   methods: {
-    up: function() {
-      console.log("up >>>");
+    up: function(index) {
+      this.$store.commit('up', index);
     },
-    down: function() {
-      console.log("down >>>");
+    down: function(index) {
+      this.$store.commit('down', index);
     }
   },
   computed: {
@@ -32,6 +32,7 @@ export default {
   created() {
     // dispatch action get posts
     this.$store.dispatch("getPosts");
+    console.log(this.$store, 'store >>>');
   }
 };
 </script>
@@ -79,5 +80,9 @@ a {
   cursor: pointer;
   float: right;
   position: relative;
+}
+
+.flip-list-move {
+  transition: transform 1s;
 }
 </style>
