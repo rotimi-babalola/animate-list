@@ -32,7 +32,6 @@ export default {
   created() {
     // dispatch action get posts
     this.$store.dispatch("getPosts");
-    console.log(this.$store, 'store >>>');
   }
 };
 </script>
