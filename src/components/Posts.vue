@@ -46,7 +46,6 @@ ul {
 }
 li {
   margin: 0 10px;
-  /* width: auto; */
   list-style-type: none;
   position: relative;
   font-size: 1.5rem;
@@ -55,7 +54,25 @@ li {
   background: #d3d3d3;
   color: #fff;
   width: 600px;
+  border-radius: 10px;
 }
+li:nth-last-child(1) p  .chevron-down {
+  display: none;
+}
+
+li:nth-last-child(1) p  .chevron-up {
+  top: -5px;
+}
+
+li:nth-child(1) p  .chevron-up {
+  display: none;
+}
+
+li:nth-child(1) p  .chevron-down {
+  left: 2px;
+  top: 5px
+}
+
 a {
   color: #42b983;
 }
