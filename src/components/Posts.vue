@@ -76,6 +76,7 @@ export default {
 
   .list-header {
     margin-left: 50px;
+    color: #fff;
   }
 
   .chevron {
