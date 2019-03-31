@@ -7,12 +7,12 @@
           <p class="list-content">
             <font-awesome-icon
               icon="chevron-up"
-              class="chevron-up"
+              class="chevron chevron-up"
               v-on:click="up({ index, postId: post.id })"
             />
             <font-awesome-icon
               icon="chevron-down"
-              class="chevron-down"
+              class="chevron chevron-down"
               v-on:click="down({ index, postId: post.id })"
             />
             Post {{ post.id }}
@@ -78,6 +78,10 @@ export default {
     margin-left: 50px;
   }
 
+  .chevron {
+    color: #9370DB;
+  }
+
   .chevron-up {
     display: block;
     top: -35px;
@@ -107,8 +111,8 @@ export default {
     font-size: 1.5rem;
     padding: 10px;
     margin-bottom: 15px;
-    background: #d3d3d3;
-    color: #fff;
+    background: #ffffff;
+    color: #505050;
     width: 600px;
     border-radius: 10px;
   }

@@ -6,16 +6,16 @@
 </template>
 
 <script>
-import Posts from './components/Posts.vue'
-import History from './components/History'
+import Posts from './components/Posts.vue';
+import History from './components/History.vue';
 
 export default {
   name: 'app',
   components: {
     Posts,
     History,
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -28,6 +28,7 @@ export default {
   margin-top: 60px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  background-color:#eeeeee;
 }
 </style>

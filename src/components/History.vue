@@ -43,11 +43,12 @@ export default {
 <style scoped>
   .history-container {
     height: 650px;
+    width: 700px;
     overflow-y: scroll;
   }
 
   .history-header {
-    margin: 15px;
+    margin-right: 40px;
   }
 
 .time-travel-button {
