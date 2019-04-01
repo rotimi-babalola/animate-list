@@ -4,6 +4,9 @@
         <div class="header-container">
           <h1>List of actions committed</h1>
         </div>
+        <p v-if="history.length === 0" class="empty-history-text">
+          No actions have been committed
+        </p>
         <transition-group name="fade" tag="ol">
           <li
             v-for="(h, index) in history"
@@ -106,5 +109,11 @@ li:nth-last-child(1).list-items__history {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.empty-history-text {
+  color: #000;
+  font-size: 25px;
+  margin: 100px auto;
 }
 </style>
