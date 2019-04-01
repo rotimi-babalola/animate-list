@@ -1,8 +1,8 @@
 <template>
   <div class="history-container">
     <div class="foo">
-        <div class="bar">
-          <h1 class="history-header">List of actions committed</h1>
+        <div class="header-container">
+          <h1>List of actions committed</h1>
         </div>
         <transition-group name="fade" tag="ol">
           <li
@@ -59,10 +59,11 @@ export default {
 ol {
   overflow-y: scroll;
   height: 450px;
+  margin-top: 30px;
 }
 
 .list-items__history {
-  width: 560px;
+  width: 570px;
   border-bottom: 1px solid #D3D3D3;
   border-radius: 0px;
   margin-bottom: 0px;
@@ -78,22 +79,24 @@ li:nth-last-child(1).list-items__history {
   width: 650px;
 }
 
-.bar {
+.header-container {
   background-color: #fff;
   padding-top: 20px;
   padding-bottom: 10px;
 }
 
 .time-travel-button {
-  background-color: #4caf50;
+  background-color: #66FF00;
   border: none;
-  color: white;
+  color: #000;
+  border-radius: 3px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline;
   font-size: 16px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .fade-enter-active,
