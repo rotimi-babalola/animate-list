@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <Posts />
-    <History/>
+    <div class="container">
+      <Posts />
+      <History/>
+    </div>
   </div>
 </template>
 
@@ -27,18 +29,22 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   width: fit-content;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* background-color:#eeeeee; */
+  padding: 10px;
   background-image:
     linear-gradient(
-      171deg,
+      171.2deg,
       #9370DB,
       #9370DB 25%,
       #eeeeee 25%,
       #eeeeee 75%,
       #eeeeee 75%
     );
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 700px 1fr;
+  grid-column-gap: 100px;
+  padding: 20px;
 }
 </style>
