@@ -32,9 +32,9 @@ export default {
   padding: 10px;
   background-image:
     linear-gradient(
-      171.2deg,
-      #9370DB,
-      #9370DB 25%,
+      170.3deg,
+      #6046AF,
+      #6046AF 25%,
       #eeeeee 25%,
       #eeeeee 75%,
       #eeeeee 75%
@@ -45,6 +45,9 @@ export default {
   display: grid;
   grid-template-columns: 700px 1fr;
   grid-column-gap: 100px;
-  padding: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 100px;
 }
 </style>
