@@ -2,6 +2,7 @@
   <div class="hello">
     <div>
       <h1 class="list-header">Sortable Post List</h1>
+      <h1 v-if="isLoading">Loading...</h1>
       <transition-group name="flip-list" tag="ol">
         <li v-for="(post, index) in posts" v-bind:key="post.id" class="list-items">
           <p class="list-content">
@@ -37,6 +38,9 @@ export default {
   computed: {
     posts() {
       return this.$store.getters.posts;
+    },
+    isLoading() {
+      return this.$store.getters.isLoading;
     },
   },
   created() {

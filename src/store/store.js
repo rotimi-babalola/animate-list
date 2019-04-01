@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
   state: {
     posts: [],
     history: [],
+    isLoading: false,
     error: null,
   },
   mutations,
