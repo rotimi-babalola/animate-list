@@ -1,16 +1,24 @@
 <template>
   <div class="history-container">
-    <div>
-      <h1 class="history-header">List of actions committed</h1>
-      <transition-group name="fade" tag="ol">
-        <li v-for="(h, index) in history" v-bind:key="getPostId(index)" class="list-items">
-          <p class="list-content">
-            Moved post {{ getPostId(index) }} from index
-             {{ getFromIndex(index) }} to index {{ getToIndex(index) }}
-            <button v-on:click="timeTravel(index)" class="time-travel-button">Time Travel</button>
-          </p>
-        </li>
-      </transition-group>
+    <div class="parent">
+        <div class="header-container">
+          <h1>List of actions committed</h1>
+        </div>
+        <transition-group name="fade" tag="ol">
+          <li
+            v-for="(h, index) in history"
+            v-bind:key="getPostId(index)"
+            class="list-items list-items__history">
+            <p class="list-content">
+              Moved post {{ getPostId(index) }} from index
+              {{ getFromIndex(index) }} to index {{ getToIndex(index) }}
+              <button
+                v-on:click="timeTravel(index)"
+                class="time-travel-button"
+              >Time Travel</button>
+            </p>
+          </li>
+        </transition-group>
     </div>
   </div>
 </template>
@@ -41,31 +49,62 @@ export default {
 </script>
 
 <style scoped>
-  .history-container {
-    height: 650px;
-    overflow-y: scroll;
-  }
+.history-container {
+  height: 650px;
+  width: 700px;
+  overflow-y: scroll;
+  display: flex;
+}
 
-  .history-header {
-    margin: 15px;
-  }
+ol {
+  overflow-y: scroll;
+  height: 450px;
+  margin-top: 30px;
+}
+
+.list-items__history {
+  width: 570px;
+  border-bottom: 1px solid #D3D3D3;
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+li:nth-last-child(1).list-items__history {
+  border-bottom: none;
+}
+
+.parent {
+  background-color: #f5f5f5;
+  margin-top: 30px;
+  width: 650px;
+}
+
+.header-container {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
 
 .time-travel-button {
-  background-color: #4CAF50;
+  background-color: #66FF00;
   border: none;
-  color: white;
+  color: #000;
+  border-radius: 3px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline;
   font-size: 16px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
