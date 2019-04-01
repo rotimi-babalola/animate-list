@@ -1,6 +1,6 @@
 <template>
   <div class="history-container">
-    <div class="foo">
+    <div class="parent">
         <div class="header-container">
           <h1>List of actions committed</h1>
         </div>
@@ -73,7 +73,7 @@ li:nth-last-child(1).list-items__history {
   border-bottom: none;
 }
 
-.foo {
+.parent {
   background-color: #f5f5f5;
   margin-top: 30px;
   width: 650px;
