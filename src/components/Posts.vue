@@ -3,6 +3,7 @@
     <div>
       <h1 class="list-header">Sortable Post List</h1>
       <h2 v-if="isLoading" class="empty-state-text">Loading...</h2>
+      <h2 v-else-if="error" class="empty-state-text">An error occurred fetching posts</h2>
       <transition-group name="flip-list" tag="ol">
         <li v-for="(post, index) in posts" v-bind:key="post.id" class="list-items">
           <p class="list-content">
@@ -41,6 +42,9 @@ export default {
     },
     isLoading() {
       return this.$store.getters.isLoading;
+    },
+    error() {
+      return this.$store.getters.error;
     },
   },
   created() {
