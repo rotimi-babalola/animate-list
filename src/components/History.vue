@@ -6,11 +6,7 @@
       </div>
       <p v-if="history.length === 0" class="empty-history-text">No actions have been committed</p>
       <transition-group name="fade" tag="ol">
-        <li
-          v-for="(h, index) in history"
-          v-bind:key="h.postId"
-          class="list-items list-items__history"
-        >
+        <li v-for="(h, index) in history" :key="h.key" class="list-items list-items__history">
           <p class="list-content">
             Moved post {{ h.postId }} from index
             {{ h.from }} to index {{ h.to }}
@@ -21,6 +17,11 @@
           </p>
         </li>
       </transition-group>
+      <button
+        v-if="history.length > 0"
+        v-on:click="reset()"
+        class="time-travel-button"
+      >Initial State</button>
     </div>
   </div>
 </template>
@@ -31,6 +32,9 @@ export default {
   methods: {
     timeTravel(index) {
       this.$store.commit('timeTravel', index);
+    },
+    reset() {
+      this.$store.commit('reset');
     },
   },
   computed: {
@@ -44,7 +48,6 @@ export default {
 <style scoped>
 .history-container {
   height: 650px;
-  width: 700px;
   overflow-y: scroll;
   display: flex;
 }
@@ -52,7 +55,6 @@ export default {
 ol {
   overflow-y: scroll;
   height: 450px;
-  margin-top: 30px;
 }
 
 .list-items__history {
@@ -68,7 +70,6 @@ li:nth-last-child(1).list-items__history {
 
 .parent {
   background-color: #f5f5f5;
-  margin-top: 30px;
   width: 650px;
 }
 

@@ -1,3 +1,4 @@
+import uniqueId from 'lodash.uniqueid';
 import reorder from '../utils/reorder';
 import swap from '../utils/swap';
 
@@ -6,18 +7,19 @@ const mutations = {
   setPosts: (state, posts) => {
     const postsWithPositions = posts.map((post, index) => ({
       id: post.id,
-      position: index,
+      currentPosition: index,
+      initialPosition: index,
     }));
     state.posts = postsWithPositions;
-    // state.history = postsWithPositions;
+    state.initialPosts = postsWithPositions;
   },
   up: (state, postId) => {
     const postIndex = state.posts.findIndex(post => post.id === postId);
-    state.posts[postIndex].position -= 1;
-    state.posts[postIndex - 1].position += 1;
+    state.posts[postIndex].currentPosition -= 1;
+    state.posts[postIndex - 1].currentPosition += 1;
 
     // reorder posts array based on new postions
-    const indexes = state.posts.map(post => post.position);
+    const indexes = state.posts.map(post => post.currentPosition);
     state.posts = reorder(state.posts, indexes);
 
     // record history
@@ -25,15 +27,16 @@ const mutations = {
       postId,
       from: postIndex,
       to: postIndex - 1,
+      key: uniqueId(),
     });
   },
   down: (state, postId) => {
     const postIndex = state.posts.findIndex(post => post.id === postId);
-    state.posts[postIndex].position += 1;
-    state.posts[postIndex + 1].position -= 1;
+    state.posts[postIndex].currentPosition += 1;
+    state.posts[postIndex + 1].currentPosition -= 1;
 
     // reorder posts array based on new postions
-    const indexes = state.posts.map(post => post.position);
+    const indexes = state.posts.map(post => post.currentPosition);
     state.posts = reorder(state.posts, indexes);
 
     // record history
@@ -41,6 +44,7 @@ const mutations = {
       postId,
       from: postIndex,
       to: postIndex + 1,
+      key: uniqueId(),
     });
   },
   timeTravel: (state, index) => {
@@ -50,6 +54,11 @@ const mutations = {
       const action = state.history.shift();
       state.posts = swap(state.posts, action.to, action.from);
     }
+  },
+  reset: state => {
+    // clear history
+    state.history = [];
+    state.posts = state.initialPosts;
   },
   setError: (state, error) => {
     state.error = error;
