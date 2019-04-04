@@ -8,7 +8,6 @@ const mutations = {
     const postsWithPositions = posts.map((post, index) => ({
       id: post.id,
       currentPosition: index,
-      initialPosition: index,
     }));
     state.posts = postsWithPositions;
     state.initialPosts = postsWithPositions;
@@ -48,7 +47,6 @@ const mutations = {
     });
   },
   timeTravel: (state, index) => {
-    // sets post in state to the posts in the history
     const numOfMovements = state.history.length - index;
     while (state.history.length > numOfMovements) {
       const action = state.history.shift();
