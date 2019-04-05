@@ -27,7 +27,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   width: fit-content;
   padding: 10px;
   background-image:
@@ -44,10 +43,7 @@ export default {
 .container {
   display: grid;
   grid-template-columns: 700px 1fr;
-  grid-column-gap: 100px;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
-  padding-bottom: 100px;
+  grid-column-gap: 80px;
+  padding: 20px 20px 100px 20px;
 }
 </style>

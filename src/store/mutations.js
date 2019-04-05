@@ -1,41 +1,62 @@
+import uniqueId from 'lodash.uniqueid';
+import reorder from '../utils/reorder';
+import swap from '../utils/swap';
+
 /* eslint-disable no-param-reassign */
 const mutations = {
   setPosts: (state, posts) => {
-    state.posts = posts;
+    const postsWithPositions = posts.map((post, index) => ({
+      id: post.id,
+      currentPosition: index,
+    }));
+    state.posts = postsWithPositions;
+    state.initialPosts = postsWithPositions;
   },
-  up: (state, { index, postId }) => {
-    const postsCopy = [...state.posts];
+  up: (state, postId) => {
+    const postIndex = state.posts.findIndex(post => post.id === postId);
+    state.posts[postIndex].currentPosition -= 1;
+    state.posts[postIndex - 1].currentPosition += 1;
 
-    const temp = postsCopy[index - 1];
-    postsCopy[index - 1] = postsCopy[index];
-    postsCopy[index] = temp;
-    state.posts = postsCopy;
-    // add history to the beginning of the array
+    // reorder posts array based on new postions
+    const indexes = state.posts.map(post => post.currentPosition);
+    state.posts = reorder(state.posts, indexes);
+
+    // record history
     state.history.unshift({
-      post: state.posts.filter(post => post.id === postId),
-      from: index,
-      to: index - 1,
-      posts: postsCopy,
+      postId,
+      from: postIndex,
+      to: postIndex - 1,
+      key: uniqueId(),
     });
   },
-  down: (state, { index, postId }) => {
-    const postsCopy = [...state.posts];
+  down: (state, postId) => {
+    const postIndex = state.posts.findIndex(post => post.id === postId);
+    state.posts[postIndex].currentPosition += 1;
+    state.posts[postIndex + 1].currentPosition -= 1;
 
-    const temp = postsCopy[index + 1];
-    postsCopy[index + 1] = postsCopy[index];
-    postsCopy[index] = temp;
-    state.posts = postsCopy;
-    // add history to the beginning of the array
+    // reorder posts array based on new postions
+    const indexes = state.posts.map(post => post.currentPosition);
+    state.posts = reorder(state.posts, indexes);
+
+    // record history
     state.history.unshift({
-      post: state.posts.filter(post => post.id === postId),
-      from: index,
-      to: index + 1,
-      posts: postsCopy,
+      postId,
+      from: postIndex,
+      to: postIndex + 1,
+      key: uniqueId(),
     });
   },
   timeTravel: (state, index) => {
-    // sets post in state to the posts in the history
-    state.posts = state.history[index].posts;
+    const numOfMovements = state.history.length - index;
+    while (state.history.length > numOfMovements) {
+      const action = state.history.shift();
+      state.posts = swap(state.posts, action.to, action.from);
+    }
+  },
+  reset: state => {
+    // clear history
+    state.history = [];
+    state.posts = state.initialPosts;
   },
   setError: (state, error) => {
     state.error = error;

@@ -12,6 +12,5 @@ describe('History Component', () => {
     // we only have 2 items in history in the store
     expect(wrapper.findAll('.list-content').length).toEqual(2);
     expect(wrapper.find('.time-travel-button').text()).toEqual('Time Travel');
-    expect(wrapper.findAll('.time-travel-button').length).toEqual(2);
   });
 });

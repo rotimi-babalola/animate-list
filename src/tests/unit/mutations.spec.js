@@ -14,14 +14,14 @@ describe('mutations', () => {
   it('Changes order upwards', () => {
     const state = {
       posts: [
-        { id: 1, text: 'Lorem Isum' },
-        { id: 2, text: 'Lorem Ipsum' },
-        { id: 3, text: 'Lorem Ipsum' },
+        { id: 1, currentPosition: 0, initialPosition: 0 },
+        { id: 2, currentPosition: 1, initialPosition: 1 },
+        { id: 3, currentPosition: 2, initialPosition: 2 },
       ],
       history: [],
     };
 
-    mutations.up(state, { index: 2, postId: 3 });
+    mutations.up(state, 3);
     expect(state.posts[1].id).toEqual(3);
     expect(state.posts[2].id).toEqual(2);
     // checking that element at index 0 is unaffected
@@ -31,14 +31,14 @@ describe('mutations', () => {
   it('Changes order downwards', () => {
     const state = {
       posts: [
-        { id: 1, text: 'Lorem Isum' },
-        { id: 2, text: 'Lorem Ipsum' },
-        { id: 3, text: 'Lorem Ipsum' },
+        { id: 1, currentPosition: 0, initialPosition: 0 },
+        { id: 2, currentPosition: 1, initialPosition: 1 },
+        { id: 3, currentPosition: 2, initialPosition: 2 },
       ],
       history: [],
     };
 
-    mutations.down(state, { index: 1, postId: 2 });
+    mutations.down(state, 2);
     expect(state.posts[1].id).toEqual(3);
     expect(state.posts[2].id).toEqual(2);
     // checking that element at index 0 is unaffected
@@ -48,25 +48,21 @@ describe('mutations', () => {
   it('Time travels', () => {
     const state = {
       posts: [
-        { id: 1, text: 'Lorem Ipsum' },
-        { id: 2, text: 'Lorem Isum' },
-        { id: 3, text: 'Lorem Ipsum' },
-        { id: 4, text: 'Lorem Ipsum' },
+        { id: 1, currentPosition: 0, initialPosition: 0 },
+        { id: 2, currentPosition: 1, initialPosition: 1 },
+        { id: 3, currentPosition: 2, initialPosition: 2 },
+        { id: 4, currentPosition: 3, initialPosition: 3 },
       ],
       history: [],
     };
     // change order
-    mutations.down(state, { index: 1, postId: 2 });
-    mutations.up(state, { index: 3, postId: 4 });
-    mutations.down(state, { index: 0, postId: 1 });
+    mutations.down(state, 2);
+    mutations.up(state, 4);
+    mutations.down(state, 1);
 
     expect(state.history.length).toEqual(3);
     // time travel
     mutations.timeTravel(state, 1);
     expect(state.posts[2].id).toEqual(4);
-
-    mutations.timeTravel(state, 2);
-    expect(state.posts[0].id).toEqual(1);
-    expect(state.posts[1].id).toEqual(3);
   });
 });
