@@ -52,6 +52,11 @@ const mutations = {
       const action = state.history.shift();
       state.posts = swap(state.posts, action.to, action.from);
     }
+
+    state.posts = state.posts.map((post, postIndex) => ({
+      id: post.id,
+      currentPosition: postIndex,
+    }));
   },
   reset: state => {
     // clear history
