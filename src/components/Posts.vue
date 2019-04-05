@@ -5,17 +5,17 @@
       <h2 v-if="isLoading" class="empty-state-text">Loading...</h2>
       <h2 v-else-if="error" class="empty-state-text">An error occurred fetching posts</h2>
       <transition-group name="flip-list" tag="ol">
-        <li v-for="(post, index) in posts" v-bind:key="post.id" class="list-items">
+        <li v-for="(post) in posts" v-bind:key="post.id" class="list-items">
           <p class="list-content">
             <font-awesome-icon
               icon="chevron-up"
               class="chevron chevron-up"
-              v-on:click="up({ index, postId: post.id })"
+              v-on:click="up(post.id)"
             />
             <font-awesome-icon
               icon="chevron-down"
               class="chevron chevron-down"
-              v-on:click="down({ index, postId: post.id })"
+              v-on:click="down(post.id)"
             />
             Post {{ post.id }}
           </p>
@@ -56,25 +56,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  li:nth-last-child(1) p .chevron-down {
+  li:nth-last-child(1) .chevron-down {
     display: none;
   }
 
-  li:nth-last-child(1) p .chevron-up {
+  li:nth-last-child(1) .chevron-up {
     top: -5px;
   }
 
-  li:nth-child(1) p .chevron-up {
+  li:nth-child(1) .chevron-up {
     display: none;
   }
 
-  li:nth-child(1) p .chevron-down {
+  li:nth-child(1) .chevron-down {
     left: 2px;
     top: 5px;
-  }
-
-  a {
-    color: #42b983;
   }
 
   .list-content,

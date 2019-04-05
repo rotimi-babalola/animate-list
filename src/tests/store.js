@@ -7,30 +7,20 @@ localVue.use(Vuex);
 const testStore = new Vuex.Store({
   state: {
     posts: [
-      { id: 1, text: 'Lorem Isum' },
-      { id: 2, text: 'Lorem Ipsum' },
-      { id: 3, text: 'Lorem Ipsum' },
+      { id: 1, currentPosition: 0, initialPosition: 0 },
+      { id: 2, currentPosition: 1, initialPosition: 1 },
+      { id: 3, currentPosition: 2, initialPosition: 2 },
     ],
     history: [
       {
-        post: [{ id: 1, text: 'Lorem Ipsum' }],
         from: 0,
         to: 1,
-        posts: [
-          { id: 2, text: 'Lorem Ipsum' },
-          { id: 1, text: 'Lorem Ipsum' },
-          { id: 3, text: 'Lorem Ipsum' },
-        ],
+        postId: 1,
       },
       {
-        post: [{ id: 3, text: 'Lorem Ipsum' }],
         from: 2,
         to: 1,
-        posts: [
-          { id: 2, text: 'Lorem Ipsum' },
-          { id: 3, text: 'Lorem Ipsum' },
-          { id: 1, text: 'Lorem Ipsum' },
-        ],
+        postId: 3,
       },
     ],
   },

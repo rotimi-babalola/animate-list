@@ -1,5 +1,8 @@
 # animate-list
 
+# Bugs
+- Changing posts after using history breaks. I will fix this today
+
 ## Project setup
 ```
 yarn install
