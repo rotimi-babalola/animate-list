@@ -86,8 +86,6 @@ li:nth-last-child(1).list-items__history {
   border-radius: 3px;
   padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
-  display: inline;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
